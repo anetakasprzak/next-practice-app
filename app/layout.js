@@ -1,3 +1,5 @@
+import "./globals.css";
+
 export const metadata = {
   title: "Practice",
   description: "Exercising with React and Next.js",

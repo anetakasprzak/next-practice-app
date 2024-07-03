@@ -1,3 +1,10 @@
+import GoBack from "../_components/GoBack";
+
 export default function Page() {
-  return <h1>MODAL PAGE</h1>;
+  return (
+    <div>
+      <h1>MODAL PAGE</h1>
+      <GoBack />
+    </div>
+  );
 }

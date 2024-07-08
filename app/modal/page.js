@@ -22,7 +22,7 @@ export default function Page() {
 const Modal = ({ setIsModalOpen }) => {
   return (
     <div className="flex items-center justify-center">
-      <div className="bg-black bg-opacity-80 h-screen w-screen absolute top-0 left-0 flex items-center justify-center z-1 backdrop-blur-[2px]" />
+      <div className="overlay" />
 
       <div className="p-20 w-[800px] h-[600px] bg-pink-600 z-2 relative rounded-md">
         <div className="flex justify-between gap-4 relative">

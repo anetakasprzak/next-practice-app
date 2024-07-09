@@ -24,6 +24,9 @@ export default function Page() {
         <li className="hover:text-cyan-600">
           <Link href="/dateCounter">Date Counter</Link>
         </li>
+        <li className="hover:text-cyan-600">
+          <Link href="/accordion">Accordion</Link>
+        </li>
       </ul>
     </div>
   );

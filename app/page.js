@@ -15,6 +15,9 @@ export default function Page() {
         <li className="hover:text-cyan-600">
           <Link href="/modal">Modal</Link>
         </li>
+        <li className="hover:text-cyan-600">
+          <Link href="/list">List</Link>
+        </li>
       </ul>
     </div>
   );

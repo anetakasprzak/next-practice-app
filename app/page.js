@@ -18,6 +18,9 @@ export default function Page() {
         <li className="hover:text-cyan-600">
           <Link href="/list">List</Link>
         </li>
+        <li className="hover:text-cyan-600">
+          <Link href="/textExpander">Text Expander</Link>
+        </li>
       </ul>
     </div>
   );

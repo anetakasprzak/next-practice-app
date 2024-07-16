@@ -36,7 +36,7 @@ export default function Page() {
 const Modal = ({ setIsModalOpen }) => {
   return (
     <div className="flex items-center justify-center">
-      <div className="overlay" />
+      <div className="overlay" onClick={() => setIsModalOpen(false)} />
 
       <div className="p-20 w-[800px] h-[600px] bg-pink-600 z-2 relative rounded-md">
         <div className="flex justify-between gap-4 relative">

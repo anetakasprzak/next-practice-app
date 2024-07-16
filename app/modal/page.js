@@ -1,10 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GoBack from "../_components/GoBack";
 
 export default function Page() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    function fn(e) {
+      if (e.code === "Escape") {
+        setIsModalOpen(false);
+      }
+    }
+
+    document.addEventListener("keydown", fn);
+
+    return function () {
+      document.removeEventListener("keydown", fn);
+    };
+  });
 
   return (
     <div className="px-14 py-10 relative">

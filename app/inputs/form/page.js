@@ -105,10 +105,17 @@ function Form({ setShowSuccessMessage, setFirstName, setLastName, setEmail }) {
 }
 
 function SuccessMessage({ firstName, lastName, email }) {
+  function toTitleCase(str) {
+    const strArr = str.toLowerCase().split("");
+    strArr[0] = strArr[0].toUpperCase();
+    const newStr = strArr.join("");
+    return newStr;
+  }
+
   return (
     <div>
       <p>
-        Thank you {firstName} {lastName}
+        Thank you {toTitleCase(firstName)} {toTitleCase(lastName)}
       </p>
       <p>We sent confirmation on: {email}</p>
     </div>

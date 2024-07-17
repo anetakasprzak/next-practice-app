@@ -1,18 +1,24 @@
 "use client";
 
 import GoBack from "@/app/_components/GoBack";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function Page() {
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
   return (
     <div className="flex flex-col gap-6 items-center mt-20">
       <GoBack />
-      <Form />
+      {!showSuccessMessage && (
+        <Form setShowSuccessMessage={setShowSuccessMessage} />
+      )}
+      {showSuccessMessage && <SuccessMessage />}
     </div>
   );
 }
 
-function Form() {
+function Form({ setShowSuccessMessage }) {
   const {
     register,
     handleSubmit,
@@ -81,4 +87,8 @@ function Form() {
       </form>
     </div>
   );
+}
+
+function SuccessMessage() {
+  return <p>SUCCESS</p>;
 }

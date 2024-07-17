@@ -5,20 +5,35 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function Page() {
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [email, setEmail] = useState();
+
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   return (
     <div className="flex flex-col gap-6 items-center mt-20">
       <GoBack />
       {!showSuccessMessage && (
-        <Form setShowSuccessMessage={setShowSuccessMessage} />
+        <Form
+          setShowSuccessMessage={setShowSuccessMessage}
+          setFirstName={setFirstName}
+          setLastName={setLastName}
+          setEmail={setEmail}
+        />
       )}
-      {showSuccessMessage && <SuccessMessage />}
+      {showSuccessMessage && (
+        <SuccessMessage
+          firstName={firstName}
+          lastName={lastName}
+          email={email}
+        />
+      )}
     </div>
   );
 }
 
-function Form({ setShowSuccessMessage }) {
+function Form({ setShowSuccessMessage, setFirstName, setLastName, setEmail }) {
   const {
     register,
     handleSubmit,
@@ -89,6 +104,13 @@ function Form({ setShowSuccessMessage }) {
   );
 }
 
-function SuccessMessage() {
-  return <p>SUCCESS</p>;
+function SuccessMessage({ firstName, lastName, email }) {
+  return (
+    <div>
+      <p>
+        Thank you {firstName} {lastName}
+      </p>
+      <p>We sent confirmation on: {email}</p>
+    </div>
+  );
 }

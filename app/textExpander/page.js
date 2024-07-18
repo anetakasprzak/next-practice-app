@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import GoBack from "../_components/GoBack";
 
 const data = {
@@ -8,13 +11,17 @@ const data = {
 export default function Page() {
   const { title, text } = data;
 
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <div className="w-[40rem] flex flex-col gap-3">
       <GoBack />
       <div className="flex flex-col gap-4">
         <h1 className="font-semibold">{title}</h1>
-        <p>{text}</p>
-        <button className="">button</button>
+        <p>{isExpanded ? text : `${text.slice(0, 102)}...`}</p>
+        <button onClick={() => setIsExpanded(!isExpanded)} className="">
+          {isExpanded ? "show less" : "read more"}
+        </button>
       </div>
     </div>
   );

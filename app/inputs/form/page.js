@@ -113,9 +113,12 @@ function SuccessMessage({ firstName, lastName, email }) {
   }
 
   return (
-    <div>
-      <p>
-        Thank you {toTitleCase(firstName)} {toTitleCase(lastName)}
+    <div className="bg-orange-300 p-5 rounded-[5px]">
+      <p className="flex gap-2">
+        <span>Thank you</span>
+        <span className="font-semibold">
+          {toTitleCase(firstName)} {toTitleCase(lastName)}
+        </span>
       </p>
       <p>We sent confirmation on: {email}</p>
     </div>

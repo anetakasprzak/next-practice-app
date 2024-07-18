@@ -6,10 +6,16 @@ const data = {
 };
 
 export default function Page() {
+  const { title, text } = data;
+
   return (
-    <div>
+    <div className="w-[40rem] flex flex-col gap-3">
       <GoBack />
-      <h1>Text expander</h1>
+      <div className="flex flex-col gap-4">
+        <h1 className="font-semibold">{title}</h1>
+        <p>{text}</p>
+        <button className="">button</button>
+      </div>
     </div>
   );
 }

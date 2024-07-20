@@ -16,7 +16,7 @@ export default function Page() {
   return (
     <div className="w-[40rem] flex flex-col gap-3">
       <GoBack />
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 ">
         <h1 className="font-semibold">{title}</h1>
         <p>{isExpanded ? text : `${text.slice(0, 102)}...`}</p>
         <button onClick={() => setIsExpanded(!isExpanded)} className="">

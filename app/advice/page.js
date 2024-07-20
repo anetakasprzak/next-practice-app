@@ -22,3 +22,11 @@ export default function Page() {
     </div>
   );
 }
+
+function Loader() {
+  return <p>Loading...</p>;
+}
+
+function Error() {
+  return <p>Upps.. there was an error :(</p>;
+}

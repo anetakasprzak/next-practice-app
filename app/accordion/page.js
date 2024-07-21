@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import GoBack from "../_components/GoBack";
 
 const faqs = [
@@ -19,7 +22,31 @@ export default function Page() {
   return (
     <div>
       <GoBack />
-      <h1>ACCORDION</h1>
+      <Accordion data={faqs} />
+    </div>
+  );
+}
+
+function Accordion({ data }) {
+  return (
+    <div>
+      {data.map((el, i) => (
+        <AccordionItem key={i} title={el.title} text={el.text} i={i} />
+      ))}
+    </div>
+  );
+}
+
+function AccordionItem({ i, title, text }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <p>
+        {title}
+        <button onClick={() => setIsOpen(!isOpen)}>{isOpen ? "-" : "+"}</button>
+      </p>
+      {isOpen && <p>{text}</p>}
     </div>
   );
 }

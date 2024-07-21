@@ -10,6 +10,7 @@ export default function Page() {
 
   async function fetchAdvice() {
     try {
+      setError("");
       setIsLoading(true);
 
       const res = await fetch(`https://api.adviceslip.com/advice`);
@@ -19,7 +20,6 @@ export default function Page() {
     } catch (err) {
       setError(err);
     } finally {
-      setError("");
       setIsLoading(false);
     }
   }
@@ -29,25 +29,27 @@ export default function Page() {
   }, []);
 
   return (
-    <div>
+    <div className="h-max w-[700px] flex flex-col items-center gap-8">
       <GoBack />
       {error && <Error />}
       {isLoading && <Loader />}
-      {!isLoading && advice && (
-        <div>
-          <p>Advice {advice?.slip?.id}</p>
-          <p>&ldquo;{advice?.slip?.advice}&ldquo;</p>
+      {!isLoading && advice && !error && (
+        <div className="bg-gray-600 flex flex-col items-center gap-2 py-3 px-4">
+          <p className="text-gray-50">Advice {advice?.slip?.id}</p>
+          <p className="text-gray-50">&ldquo;{advice?.slip?.advice}&ldquo;</p>
         </div>
       )}
-      <button onClick={fetchAdvice}>get new advice</button>
+      <button onClick={fetchAdvice} className="hover:text-blue-800">
+        get new advice
+      </button>
     </div>
   );
 }
 
 function Loader() {
-  return <p>Loading...</p>;
+  return <p className="">Loading...</p>;
 }
 
 function Error() {
-  return <p>Upps.. there was an error :(</p>;
+  return <p>Upps.. there was an error..</p>;
 }

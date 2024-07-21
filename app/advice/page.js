@@ -1,13 +1,27 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import GoBack from "../_components/GoBack";
 
 export default function Page() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [advice, setAdvice] = useState([]);
+  const [error, setError] = useState("");
+
   async function fetchAdvice() {
-    const res = await fetch(`https://api.adviceslip.com/advice`);
-    const data = await res.json();
-    console.log(data);
+    try {
+      setIsLoading(true);
+
+      const res = await fetch(`https://api.adviceslip.com/advice`);
+      const data = await res.json();
+
+      setAdvice(data);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setError("");
+      setIsLoading(false);
+    }
   }
 
   useEffect(function () {
@@ -17,8 +31,15 @@ export default function Page() {
   return (
     <div>
       <GoBack />
-      <h1>ADVICE PAGE</h1>
-      <button onClick={fetchAdvice}>get advice</button>
+      {error && <Error />}
+      {isLoading && <Loader />}
+      {!isLoading && advice && (
+        <div>
+          <p>Advice {advice?.slip?.id}</p>
+          <p>&ldquo;{advice?.slip?.advice}&ldquo;</p>
+        </div>
+      )}
+      <button onClick={fetchAdvice}>get new advice</button>
     </div>
   );
 }

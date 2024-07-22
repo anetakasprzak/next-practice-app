@@ -1,20 +1,30 @@
+"use client";
+
+import { useState } from "react";
 import GoBack from "../_components/GoBack";
 
 export default function Page() {
+  const [count, setCount] = useState(0);
+  const [step, setStep] = useState(1);
+
+  const date = new Date();
+  date.setDate(date.getDate() + count);
+  console.log(step, count);
+
   return (
     <div>
       <GoBack />
       <h1>DATE COUNTER</h1>
       <div>
-        <button>-</button>
-        <span>Step: X</span>
-        <button>+</button>
+        <button onClick={() => setStep((c) => c - 1)}>-</button>
+        <span>Step: {step}</span>
+        <button onClick={() => setStep((c) => c + 1)}>+</button>
       </div>
 
       <div>
-        <button>-</button>
-        <span>Count: X</span>
-        <button>+</button>
+        <button onClick={() => setCount((c) => c - step)}>-</button>
+        <span>Count: {count}</span>
+        <button onClick={() => setCount((c) => c + step)}>+</button>
       </div>
 
       <p>

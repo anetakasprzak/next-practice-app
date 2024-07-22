@@ -9,7 +9,6 @@ export default function Page() {
 
   const date = new Date();
   date.setDate(date.getDate() + count);
-  console.log(step, count);
 
   function handleReset() {
     setCount(0);
@@ -33,8 +32,14 @@ export default function Page() {
       </div>
 
       <p>
-        <span>Today is...</span>
-        <span>date</span>
+        <span>
+          {count === 0
+            ? "Today is "
+            : count > 0
+            ? `in ${count} days from today is `
+            : `${Math.abs(count)} days ago was `}
+        </span>
+        <span>{date.toDateString()}</span>
       </p>
       <button onClick={handleReset}>reset</button>
     </div>

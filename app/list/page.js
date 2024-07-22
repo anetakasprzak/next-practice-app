@@ -5,14 +5,15 @@ import GoBack from "../_components/GoBack";
 
 export default function Page() {
   const [items, setItems] = useState([]);
-  const [newItemName, setNewItemName] = useState("");
+  const [newItem, setNewItem] = useState("");
 
   const addItem = (itemName) => {
     const newItem = {
       name: itemName,
       completed: false,
-      id: itemName,
+      id: items.length + 1,
     };
+    setItems((prevItems) => [...prevItems, newItem]);
   };
 
   const handleSubmit = (e) => {
@@ -22,7 +23,7 @@ export default function Page() {
 
     addItem(newItemName);
     console.log(newItemName);
-    setNewItemName("");
+    setNewItem("");
   };
 
   return (
@@ -34,12 +35,16 @@ export default function Page() {
           type="text"
           name="shopping"
           placeholder="Add item..."
-          value={newItemName}
-          onChange={(e) => setNewItemName(e.target.value)}
+          value={newItem}
+          onChange={(e) => setNewItem(e.target.value)}
         />
         <button>add</button>
       </form>
-      <ul></ul>
+      <ul>
+        {items?.map((item) => {
+          return <li key={item.id}>{item.name}</li>;
+        })}
+      </ul>
     </div>
   );
 }

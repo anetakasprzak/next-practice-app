@@ -11,6 +11,11 @@ export default function Page() {
   date.setDate(date.getDate() + count);
   console.log(step, count);
 
+  function handleReset() {
+    setCount(0);
+    setStep(1);
+  }
+
   return (
     <div>
       <GoBack />
@@ -31,7 +36,7 @@ export default function Page() {
         <span>Today is...</span>
         <span>date</span>
       </p>
-      <button>reset</button>
+      <button onClick={handleReset}>reset</button>
     </div>
   );
 }

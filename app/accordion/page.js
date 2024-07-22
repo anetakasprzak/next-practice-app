@@ -20,7 +20,7 @@ const faqs = [
 
 export default function Page() {
   return (
-    <div>
+    <div className="flex flex-col gap-5 w-[500px] py-3 px-5">
       <GoBack />
       <Accordion data={faqs} />
     </div>
@@ -29,7 +29,7 @@ export default function Page() {
 
 function Accordion({ data }) {
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       {data.map((el, i) => (
         <AccordionItem key={i} title={el.title} text={el.text} i={i} />
       ))}
@@ -41,12 +41,16 @@ function AccordionItem({ i, title, text }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
-      <p>
-        <span>{i < 9 ? `0${i + 1}` : i + 1}</span>
-        {title}
-        <button onClick={() => setIsOpen(!isOpen)}>{isOpen ? "-" : "+"}</button>
-      </p>
+    <div className="flex flex-col gap-2 shadow-md px-3 py-4">
+      <div className="flex font-bold justify-between ">
+        <div className="flex gap-3">
+          <span className="opacity-60">{i < 9 ? `0${i + 1}` : i + 1}</span>
+          <p>{title}</p>
+        </div>
+        <button onClick={() => setIsOpen(!isOpen)} className="pr-3">
+          {isOpen ? "-" : "+"}
+        </button>
+      </div>
       {isOpen && <p>{text}</p>}
     </div>
   );

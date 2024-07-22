@@ -43,6 +43,7 @@ function AccordionItem({ i, title, text }) {
   return (
     <div>
       <p>
+        <span>{i < 9 ? `0${i + 1}` : i + 1}</span>
         {title}
         <button onClick={() => setIsOpen(!isOpen)}>{isOpen ? "-" : "+"}</button>
       </p>

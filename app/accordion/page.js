@@ -5,14 +5,17 @@ import GoBack from "../_components/GoBack";
 
 const faqs = [
   {
+    id: 1,
     title: "Where are these chairs assembled?",
     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium, quaerat temporibus quas dolore provident nisi ut aliquid ratione beatae sequi aspernatur veniam repellendus.",
   },
   {
+    id: 2,
     title: "How long do I have to return my chair?",
     text: "Pariatur recusandae dignissimos fuga voluptas unde optio nesciunt commodi beatae, explicabo natus.",
   },
   {
+    id: 3,
     title: "Do you ship to countries outside the EU?",
     text: "Excepturi velit laborum, perspiciatis nemo perferendis reiciendis aliquam possimus dolor sed! Dolore laborum ducimus veritatis facere molestias!",
   },
@@ -28,17 +31,33 @@ export default function Page() {
 }
 
 function Accordion({ data }) {
+  const [activeId, setActiveId] = useState(null);
+
+  const toggleFaqs = (id) => {
+    const newActiveId = id === activeId ? null : id;
+    setActiveId(newActiveId);
+  };
+
   return (
     <div className="flex flex-col gap-4">
       {data.map((el, i) => (
-        <AccordionItem key={i} title={el.title} text={el.text} i={i} />
+        <AccordionItem
+          key={i}
+          title={el.title}
+          text={el.text}
+          i={i}
+          id={el.id}
+          toggleFaqs={toggleFaqs}
+          activeId={activeId}
+        />
       ))}
     </div>
   );
 }
 
-function AccordionItem({ i, title, text }) {
-  const [isOpen, setIsOpen] = useState(false);
+function AccordionItem({ i, title, text, id, toggleFaqs, activeId }) {
+  // const [isOpen, setIsOpen] = useState(false);
+  const isActive = id === activeId;
 
   return (
     <div className="flex flex-col gap-2 shadow-md px-3 py-4">
@@ -47,11 +66,11 @@ function AccordionItem({ i, title, text }) {
           <span className="opacity-60">{i < 9 ? `0${i + 1}` : i + 1}</span>
           <p>{title}</p>
         </div>
-        <button onClick={() => setIsOpen(!isOpen)} className="pr-3">
-          {isOpen ? "-" : "+"}
+        <button onClick={() => toggleFaqs(id)} className="pr-3">
+          {isActive ? "-" : "+"}
         </button>
       </div>
-      {isOpen && <p>{text}</p>}
+      {isActive && <p>{text}</p>}
     </div>
   );
 }

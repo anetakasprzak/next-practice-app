@@ -26,6 +26,10 @@ export default function Page() {
     setNewItem("");
   };
 
+  const deleteItem = (id) => {
+    setItems((items) => items.filter((item) => item.id !== id));
+  };
+
   return (
     <div>
       <GoBack />
@@ -42,7 +46,12 @@ export default function Page() {
       </form>
       <ul>
         {items?.map((item) => {
-          return <li key={item.id}>{item.name}</li>;
+          return (
+            <li key={item.id}>
+              {item.name}
+              <button onClick={() => deleteItem(item.id)}>x</button>
+            </li>
+          );
         })}
       </ul>
     </div>

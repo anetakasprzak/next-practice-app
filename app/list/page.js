@@ -11,7 +11,7 @@ export default function Page() {
     const newItem = {
       name: itemName,
       completed: false,
-      id: items.length + 1,
+      id: crypto.randomUUID(),
     };
     setItems((prevItems) => [...prevItems, newItem]);
   };

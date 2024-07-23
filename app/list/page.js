@@ -19,10 +19,10 @@ export default function Page() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!newItemName) return;
+    if (!newItem) return;
 
-    addItem(newItemName);
-    console.log(newItemName);
+    addItem(newItem);
+    console.log(newItem);
     setNewItem("");
   };
 
